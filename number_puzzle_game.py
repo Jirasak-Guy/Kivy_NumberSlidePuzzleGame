@@ -36,7 +36,13 @@ class SlidingPuzzle(GridLayout):
             if not self.tiles[index].text:
                 self.tiles[index].text = button.text
                 button.text = ""
+                if self.check_win():
+                    print("You win!")
                 return
+            
+    def check_win(self):
+        nums = [int(tile.text) if tile.text else None for tile in self.tiles]
+        return nums == list(range(1, 16)) + [None]
 
 
 class MyGame(App):
