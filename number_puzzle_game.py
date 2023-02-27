@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
+import random
 
 
 class SlidingPuzzle(GridLayout):
@@ -13,7 +14,7 @@ class SlidingPuzzle(GridLayout):
         self.add_tiles()
 
     def generate_tiles(self):
-        nums = list(range(1, 16))
+        nums = random.sample(range(1, 16), 15)
         nums.append(None)
         for num in nums:
             button = Button(text=str(num) if num else "", font_size=50)
