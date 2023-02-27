@@ -18,11 +18,25 @@ class SlidingPuzzle(GridLayout):
         nums.append(None)
         for num in nums:
             button = Button(text=str(num) if num else "", font_size=50)
+            button.bind(on_press=self.move_tile)
             self.tiles.append(button)
 
     def add_tiles(self):
         for tile in self.tiles:
             self.add_widget(tile)
+
+    def move_tile(self, button):
+        index = self.tiles.index(button)
+        row, col = divmod(index, self.cols)
+        adjacent_indices = [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]
+        for row, col in adjacent_indices:
+            if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+                continue
+            index = row*self.cols + col
+            if not self.tiles[index].text:
+                self.tiles[index].text = button.text
+                button.text = ""
+                return
 
 
 class MyGame(App):
