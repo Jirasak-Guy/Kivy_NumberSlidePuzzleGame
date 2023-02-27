@@ -15,11 +15,21 @@ class SlidingPuzzle(GridLayout):
 
     def generate_tiles(self):
         nums = random.sample(range(1, 16), 15)
+        while not self.is_solvable(nums):
+            nums = random.sample(range(1, 16), 15)
         nums.append(None)
         for num in nums:
             button = Button(text=str(num) if num else "", font_size=50)
             button.bind(on_press=self.move_tile)
             self.tiles.append(button)
+
+    def is_solvable(self, nums):
+        inversion_count = 0
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] and nums[j] and nums[i] > nums[j]:
+                    inversion_count += 1
+        return inversion_count % 2 == 0
 
     def add_tiles(self):
         for tile in self.tiles:
