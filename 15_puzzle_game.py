@@ -3,8 +3,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.graphics import Rectangle,Color
 import random
-
 
 class SlidingPuzzle(GridLayout):
     def __init__(self, **kwargs):
@@ -14,6 +14,15 @@ class SlidingPuzzle(GridLayout):
         self.tiles = []
         self.generate_tiles()
         self.add_tiles()
+        # Set the background color of the grid
+        with self.canvas.before:
+            Color(225, 223, 208, 0.4)  # background color
+            self.rect = Rectangle(size=self.size, pos=self.pos)
+        self.bind(size=self._update_rect, pos=self._update_rect)
+
+    def _update_rect(self, instance, value):
+        self.rect.pos = instance.pos
+        self.rect.size = instance.size
 
     def generate_tiles(self):
         nums = random.sample(range(1, 16), 15)
@@ -21,7 +30,7 @@ class SlidingPuzzle(GridLayout):
             nums = random.sample(range(1, 16), 15)
         nums.append(None)
         for num in nums:
-            button = Button(text=str(num) if num else "", font_size=50)
+            button = Button(text=str(num) if num else "", font_size=100, background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
             button.bind(on_press=self.move_tile)
             self.tiles.append(button)
 
@@ -50,15 +59,16 @@ class SlidingPuzzle(GridLayout):
                 button.text = ""
                 if self.check_win():
                 # Create a Victory popup
-                    victory_popup = Popup(title='Congratulations!', size_hint=(None, None), size=(400, 400))
-                    victory_popup_content = Label(text=' You won!', font_size=50)
+                    victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
+                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))  # set text color to black
+                    victory_popup_content.background_color = (145, 99, 46, 0.8) # set background color to white
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.open()
+
             
     def check_win(self):
         nums = [int(tile.text) if tile.text else None for tile in self.tiles]
         return nums == list(range(1, 16)) + [None]
-
 
 class MyGame(App):
     def build(self):
