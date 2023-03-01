@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 import random
 
 
@@ -47,8 +49,11 @@ class SlidingPuzzle(GridLayout):
                 self.tiles[index].text = button.text
                 button.text = ""
                 if self.check_win():
-                    print("You win!")
-                return
+                # Create a Victory popup
+                    victory_popup = Popup(title='Congratulations!', size_hint=(None, None), size=(400, 400))
+                    victory_popup_content = Label(text=' You won!', font_size=50)
+                    victory_popup.add_widget(victory_popup_content)
+                    victory_popup.open()
             
     def check_win(self):
         nums = [int(tile.text) if tile.text else None for tile in self.tiles]
