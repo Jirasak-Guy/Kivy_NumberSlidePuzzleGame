@@ -6,7 +6,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.metrics import dp
-from kivy.uix.boxlayout import BoxLayout
+from kivy.core.audio import SoundLoader
 import random
 
 
@@ -26,7 +26,7 @@ class StartMenu(Screen):
         self.add_widget(title_label)
 
         start_button = Button(text="Start Game", font_size=dp(30),
-                              size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                              size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.5}, background_color=(0.4, 0.6, 1, 1), color=(1, 1, 1, 1))
         start_button.bind(on_press=self.switch_to_game)
         self.add_widget(start_button)
 
@@ -92,9 +92,8 @@ class NinePuzzle(GridLayout):
         self.tiles = []
         self.generate_tiles()
         self.add_tiles()
-        # Set the background color of the grid
         with self.canvas.before:
-            Color(225, 223, 208, 0.4)  # background color
+            Color(225, 223, 208, 0.4)
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
@@ -136,11 +135,9 @@ class NinePuzzle(GridLayout):
                 self.tiles[index].text = button.text
                 button.text = ""
                 if self.check_win():
-                # Create a Victory popup
-                    # Create a Victory popup
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))  # set text color to black
-                    victory_popup_content.background_color = (145, 99, 46, 0.8) # set background color to white
+                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content.background_color = (145, 99, 46, 0.8)
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
                     victory_popup.open()
@@ -165,9 +162,8 @@ class FifteenPuzzle(GridLayout):
         self.tiles = []
         self.generate_tiles()
         self.add_tiles()
-        # Set the background color of the grid
         with self.canvas.before:
-            Color(225, 223, 208, 0.4)  # background color
+            Color(225, 223, 208, 0.4) 
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
@@ -210,8 +206,8 @@ class FifteenPuzzle(GridLayout):
                 button.text = ""
                 if self.check_win():
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))  # set text color to black
-                    victory_popup_content.background_color = (145, 99, 46, 0.8) # set background color to white
+                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content.background_color = (145, 99, 46, 0.8) 
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
                     victory_popup.open()
@@ -236,9 +232,8 @@ class TwentyFivePuzzle(GridLayout):
         self.tiles = []
         self.generate_tiles()
         self.add_tiles()
-        # Set the background color of the grid
         with self.canvas.before:
-            Color(225, 223, 208, 0.4)  # background color
+            Color(225, 223, 208, 0.4)
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
@@ -280,11 +275,9 @@ class TwentyFivePuzzle(GridLayout):
                 self.tiles[index].text = button.text
                 button.text = ""
                 if self.check_win():
-                # Create a Victory popup
-                    # Create a Victory popup
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))  # set text color to black
-                    victory_popup_content.background_color = (145, 99, 46, 0.8) # set background color to white
+                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content.background_color = (145, 99, 46, 0.8)
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
                     victory_popup.open()
@@ -304,7 +297,7 @@ class GameScreen3x3(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(NinePuzzle())
-        back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
+        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
 
@@ -314,7 +307,7 @@ class GameScreen4x4(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(FifteenPuzzle())
-        back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
+        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
     def go_back(self, instance):
@@ -323,7 +316,7 @@ class GameScreen5x5(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(TwentyFivePuzzle())
-        back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
+        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
     def go_back(self, instance):
@@ -331,7 +324,9 @@ class GameScreen5x5(Screen):
         
 class MyGame(App):
     def build(self):
-        # Create a screen manager and add the start and game screens
+        sound = SoundLoader.load('sound/CoolDown.mp3')
+        sound.play()
+        sound.loop = True
         sm = ScreenManager()
         sm.add_widget(StartMenu(name='menu'))
         sm.add_widget(Select(name='select'))
