@@ -63,6 +63,12 @@ class Select(Screen):
         size_button_5 = Button(text="5x5", font_size=dp(30),size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.2})
         size_button_5.bind(on_press=self.switch_to_game_5x5)
         self.add_widget(size_button_5)
+        back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
+        back_button.bind(on_press=self.go_back)
+        self.add_widget(back_button)
+        
+    def go_back(self, instance):
+        self.manager.current = "menu"
 
     def switch_to_game_3x3(self, instance):
         self.manager.current = '3x3'
@@ -297,13 +303,11 @@ class TwentyFivePuzzle(GridLayout):
 class GameScreen3x3(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        layout = BoxLayout(orientation="vertical")
-        layout.add_widget(NinePuzzle())
-        button_layout = BoxLayout(orientation="horizontal", size_hint=(1, 0.1))
+        self.add_widget(NinePuzzle())
         back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
         back_button.bind(on_press=self.go_back)
-        button_layout.add_widget(back_button)
-        layout.add_widget(button_layout)
+        self.add_widget(back_button)
+
     def go_back(self, instance):
         self.manager.current = "select"
 class GameScreen4x4(Screen):
