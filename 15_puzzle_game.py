@@ -20,12 +20,12 @@ class StartMenu(Screen):
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        title_label = Label(text='15 Puzzle Game', font_size=dp(80), bold=True,
+        title_label = Label(text='15 Puzzle Game', font_size=dp(80), bold=True, font_name="Comic",
                             color=(1, 1, 1, 1), size_hint=(1, 0.4),
                             pos_hint={'center_x': 0.5, 'center_y': 0.7})
         self.add_widget(title_label)
 
-        start_button = Button(text="Start Game", font_size=dp(30),
+        start_button = Button(text="Start Game", font_size=dp(30),font_name="Comic",
                               size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.4}, background_color=(0.4, 0.6, 1, 1), color=(1, 1, 1, 1))
         start_button.bind(on_press=self.switch_to_game)
         self.add_widget(start_button)
@@ -47,23 +47,23 @@ class Select(Screen):
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        title_label = Label(text='Select board size:', font_size=dp(50), bold=True,
+        title_label = Label(text='Select board size:', font_size=dp(50),font_name="Comic", bold=True,
                             color=(1, 1, 1, 1), size_hint=(1, 0.4),
                             pos_hint={'center_x': 0.5, 'center_y': 0.8})
         self.add_widget(title_label)
 
-        size_button_3 = Button(text="3x3", font_size=dp(30),size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.6})
+        size_button_3 = Button(text="3x3", font_size=dp(30),font_name="Comic",size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.6})
         size_button_3.bind(on_press=self.switch_to_game_3x3)
         self.add_widget(size_button_3)
 
-        size_button_4 = Button(text="4x4", font_size=dp(30),size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.4})
+        size_button_4 = Button(text="4x4", font_size=dp(30),font_name="Comic",size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.4})
         size_button_4.bind(on_press=self.switch_to_game_4x4)
         self.add_widget(size_button_4)
 
-        size_button_5 = Button(text="5x5", font_size=dp(30),size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.2})
+        size_button_5 = Button(text="5x5", font_size=dp(30),font_name="Comic",size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.2})
         size_button_5.bind(on_press=self.switch_to_game_5x5)
         self.add_widget(size_button_5)
-        back_button = Button(text="Back", size_hint=(None, None), size=(100, 50))
+        back_button = Button(text="Back",font_name="Comic", size_hint=(None, None), size=(100, 50))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
         
@@ -107,7 +107,7 @@ class NinePuzzle(GridLayout):
             nums = random.sample(range(1, self.di), self.di-1)
         nums.append(None)
         for num in nums:
-            button = Button(text=str(num) if num else "", font_size=100, background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
+            button = Button(text=str(num) if num else "", font_size=100,font_name="Comic", background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
             button.bind(on_press=self.move_tile)
             self.tiles.append(button)
 
@@ -136,7 +136,7 @@ class NinePuzzle(GridLayout):
                 button.text = ""
                 if self.check_win():
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content = Label(text='You won!',font_name="Comic", font_size=50, color=(1, 1, 1, 1))
                     victory_popup_content.background_color = (145, 99, 46, 0.8)
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
@@ -177,7 +177,7 @@ class FifteenPuzzle(GridLayout):
             nums = random.sample(range(1, self.di), self.di-1)
         nums.append(None)
         for num in nums:
-            button = Button(text=str(num) if num else "", font_size=100, background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
+            button = Button(text=str(num) if num else "",font_name="Comic", font_size=100, background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
             button.bind(on_press=self.move_tile)
             self.tiles.append(button)
 
@@ -206,7 +206,7 @@ class FifteenPuzzle(GridLayout):
                 button.text = ""
                 if self.check_win():
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content = Label(text='You won!',font_name="Comic", font_size=50, color=(1, 1, 1, 1))
                     victory_popup_content.background_color = (145, 99, 46, 0.8) 
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
@@ -247,7 +247,7 @@ class TwentyFivePuzzle(GridLayout):
             nums = random.sample(range(1, self.di), self.di-1)
         nums.append(None)
         for num in nums:
-            button = Button(text=str(num) if num else "", font_size=100, background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
+            button = Button(text=str(num) if num else "", font_size=100,font_name="Comic", background_color=(225, 223, 208, 0.8), color=(0, 0, 0, 0.6))
             button.bind(on_press=self.move_tile)
             self.tiles.append(button)
 
@@ -276,7 +276,7 @@ class TwentyFivePuzzle(GridLayout):
                 button.text = ""
                 if self.check_win():
                     victory_popup = Popup(title='', size_hint=(None, None), size=(400, 400),)
-                    victory_popup_content = Label(text='You won!', font_size=50, color=(1, 1, 1, 1))
+                    victory_popup_content = Label(text='You won!',font_name="Comic", font_size=50, color=(1, 1, 1, 1))
                     victory_popup_content.background_color = (145, 99, 46, 0.8)
                     victory_popup.add_widget(victory_popup_content)
                     victory_popup.bind(on_dismiss=self.reset_tiles)
@@ -297,7 +297,7 @@ class GameScreen3x3(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(NinePuzzle())
-        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
+        back_button = Button(text="<<<",font_name="Comic", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
 
@@ -307,7 +307,7 @@ class GameScreen4x4(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(FifteenPuzzle())
-        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
+        back_button = Button(text="<<<",font_name="Comic", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
     def go_back(self, instance):
@@ -316,7 +316,7 @@ class GameScreen5x5(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(TwentyFivePuzzle())
-        back_button = Button(text="<<<", size_hint=(None, None), size=(50, 25))
+        back_button = Button(text="<<<",font_name="Comic", size_hint=(None, None), size=(50, 25))
         back_button.bind(on_press=self.go_back)
         self.add_widget(back_button)
     def go_back(self, instance):
