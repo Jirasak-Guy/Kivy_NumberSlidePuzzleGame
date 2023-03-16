@@ -20,13 +20,13 @@ class StartMenu(Screen):
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        title_label = Label(text='Menu', font_size=dp(50), bold=True,
+        title_label = Label(text='15 Puzzle Game', font_size=dp(80), bold=True,
                             color=(1, 1, 1, 1), size_hint=(1, 0.4),
-                            pos_hint={'center_x': 0.5, 'center_y': 0.8})
+                            pos_hint={'center_x': 0.5, 'center_y': 0.7})
         self.add_widget(title_label)
 
         start_button = Button(text="Start Game", font_size=dp(30),
-                              size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.5}, background_color=(0.4, 0.6, 1, 1), color=(1, 1, 1, 1))
+                              size_hint=(0.4, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.4}, background_color=(0.4, 0.6, 1, 1), color=(1, 1, 1, 1))
         start_button.bind(on_press=self.switch_to_game)
         self.add_widget(start_button)
 
