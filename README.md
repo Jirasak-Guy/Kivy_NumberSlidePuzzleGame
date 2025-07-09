@@ -24,8 +24,6 @@ A sliding puzzle game built with **Python** and [**Kivy**](https://kivy.org/). C
 
 ## Installation
 
-### 1. Clone the repository:
-
 ```bash
 git clone https://github.com/Jirasak-Guy/Kivy_NumberSlidePuzzleGame.git
 cd Kivy_NumberSlidePuzzleGame
